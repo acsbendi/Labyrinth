@@ -6,11 +6,14 @@ class Agent {
     private LabyrinthCell currentCell;
     private int remainingNumberOfThings;
     private Labyrinth labyrinth;
+    private MoveController moveController;
+    private LabyrinthCell currentDestination;
 
     Agent(LabyrinthCell startingCell, int startingNumberOfThings, Labyrinth labyrinth){
         this.currentCell = startingCell;
         this.remainingNumberOfThings = startingNumberOfThings;
         this.labyrinth = labyrinth;
+        this.moveController = new MoveController(startingCell);
     }
 
     void solve(){
