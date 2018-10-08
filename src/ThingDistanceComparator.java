@@ -13,8 +13,12 @@ public class ThingDistanceComparator implements Comparator<LabyrinthCell> {
 
     @Override
     public int compare(LabyrinthCell o1, LabyrinthCell o2) {
-        int distanceFromBase1 = labyrinth.getDistanceBetween(base, o1);
-        int distanceFromBase2 = labyrinth.getDistanceBetween(base, o2);
+        int distanceFromBase1 = Integer.MAX_VALUE;
+        int distanceFromBase2 = Integer.MAX_VALUE;
+        if(o1.hasThing())
+             distanceFromBase1 = labyrinth.getDistanceBetween(base, o1);
+        if(o2.hasThing())
+            distanceFromBase2 = labyrinth.getDistanceBetween(base, o2);
 
         return distanceFromBase1 - distanceFromBase2;
     }
