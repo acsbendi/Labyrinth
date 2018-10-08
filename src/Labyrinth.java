@@ -1,4 +1,6 @@
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Labyrinth {
 
@@ -20,8 +22,13 @@ class Labyrinth {
         return cells.get(rowCount - 1).get(columnCount - 1) == cell;
     }
 
-    Thing getNearestThingTo(LabyrinthCell relativeCell) {
+    LabyrinthCell getNearestThingTo(LabyrinthCell base) {
+        List<LabyrinthCell> sortedCells = cells.stream()
+                .flatMap(Collection::stream)
+                .sorted(new ThingDistanceComparator(this, base))
+                .collect(Collectors.toList());
 
+        return sortedCells.get(0);
     }
 
     int getDistanceBetween(LabyrinthCell cell1, LabyrinthCell cell2){

@@ -23,14 +23,13 @@ class Agent {
 
     private void collectAllThings(){
         while(remainingNumberOfThings > 0){
-            collectThing();
+            tryCollectThing();
         }
     }
 
-    private void collectThing(){
+    private void tryCollectThing(){
         if(currentCell.hasThing()){
-            things.add(currentCell.removeThing());
-            remainingNumberOfThings--;
+           collectThing();
         } else{
             move();
         }
@@ -44,5 +43,15 @@ class Agent {
 
     private void move(){
 
+    }
+
+    private void collectThing(){
+        things.add(currentCell.removeThing());
+        remainingNumberOfThings--;
+        findNewDestination();
+    }
+
+    private void findNewDestination(){
+        currentDestination = labyrinth.getNearestThingTo(currentCell);
     }
 }
