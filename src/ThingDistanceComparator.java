@@ -10,7 +10,6 @@ public class ThingDistanceComparator implements Comparator<LabyrinthCell> {
         this.labyrinth = labyrinth;
     }
 
-
     @Override
     public int compare(LabyrinthCell o1, LabyrinthCell o2) {
         int distanceFromBase1 = Integer.MAX_VALUE;

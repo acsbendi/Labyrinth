@@ -53,5 +53,6 @@ class Agent {
 
     private void findNewDestination(){
         currentDestination = labyrinth.getNearestThingTo(currentCell);
+        moveController.refresh(currentDestination);
     }
 }

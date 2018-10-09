@@ -15,4 +15,14 @@ class Node {
     void addChild(Node newChild){
         children.add(newChild);
     }
+
+    void insertLeavesInto(List<LabyrinthCell> leaves){
+        if(children.size() > 0) {
+            for (Node child: children
+                 ) {
+                child.insertLeavesInto(leaves);
+            }
+        } else
+            leaves.add(representedCell);
+    }
 }
