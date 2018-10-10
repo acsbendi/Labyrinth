@@ -1,7 +1,7 @@
-public class Cell {
-    public boolean hasNorthWall;
-    public boolean hasEastWall;
-    public boolean hasSouthWall;
-    public boolean hasWestWall;
-    public boolean hasThing;
+class Cell {
+    boolean hasNorthWall;
+    boolean hasEastWall;
+    boolean hasSouthWall;
+    boolean hasWestWall;
+    boolean hasThing;
 }
