@@ -1,28 +1,42 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 class Node {
     private Node parent;
     private List<Node> children;
-    private LabyrinthCell representedCell;
+    private LabyrinthCell cell;
 
     Node(LabyrinthCell cell, Node parent){
-        this.representedCell = cell;
+        this.cell = cell;
         this.parent = parent;
         this.children = new ArrayList<>();
+        parent.addChild(this);
     }
 
-    void addChild(Node newChild){
+    private void addChild(Node newChild){
         children.add(newChild);
     }
 
-    void insertLeavesInto(List<LabyrinthCell> leaves){
-        if(children.size() > 0) {
-            for (Node child: children
-                 ) {
-                child.insertLeavesInto(leaves);
-            }
-        } else
-            leaves.add(representedCell);
+    void removeContained(Collection<LabyrinthCell> cells){
+        cells.remove(cell);
+        for (Node node: children
+             ) {
+            node.removeContained(cells);
+        }
+    }
+
+    Collection<LabyrinthCell> generateUnvisitedChildren(){
+        Collection<LabyrinthCell> possibleChildren = cell.getNeighbors();
+        removeContained(possibleChildren);
+        return possibleChildren;
+    }
+
+    LabyrinthCell getCell(){
+        return cell;
+    }
+
+    Node getParent(){
+        return parent;
     }
 }

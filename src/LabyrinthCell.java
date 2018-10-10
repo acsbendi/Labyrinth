@@ -1,9 +1,9 @@
+import java.util.Collection;
 import java.util.EnumMap;
-import java.util.List;
 
 class LabyrinthCell {
 
-    private EnumMap<Direction, LabyrinthCell> neighbors = new EnumMap<Direction, LabyrinthCell>(Direction.class);
+    private EnumMap<Direction, LabyrinthCell> neighbors = new EnumMap<>(Direction.class);
     private Thing thing = null;
 
     void setThing(Thing thing){
@@ -14,15 +14,15 @@ class LabyrinthCell {
         neighbors.put(direction, neighbor);
     }
 
-    Thing removeThing(){
-        Thing thingToRemove = thing;
-        thing = null;
-        return thingToRemove;
+    void accept(Agent agent){
+        if(thing != null){
+            agent.receive(thing);
+            thing = null;
+        }
+        agent.arriveAt(this);
     }
 
-    boolean hasThing(){
-        return thing == null;
+    Collection<LabyrinthCell> getNeighbors(){
+        return neighbors.values();
     }
-
-    List<LabyrinthCell> getNeighbors()
 }

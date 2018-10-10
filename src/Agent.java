@@ -23,14 +23,6 @@ class Agent {
 
     private void collectAllThings(){
         while(remainingNumberOfThings > 0){
-            tryCollectThing();
-        }
-    }
-
-    private void tryCollectThing(){
-        if(currentCell.hasThing()){
-           collectThing();
-        } else{
             move();
         }
     }
@@ -42,17 +34,25 @@ class Agent {
     }
 
     private void move(){
-
+        LabyrinthCell newCell =
+                moveController.getNextMove(new DistanceComparator(labyrinth, currentCell, currentDestination));
+        newCell.accept(this);
     }
 
-    private void collectThing(){
-        things.add(currentCell.removeThing());
+    private void findNewDestination(){
+        Thing thing = labyrinth.getNearestThingTo(currentCell);
+        currentDestination = thing.getLocation();
+        moveController.refresh(currentCell);
+    }
+
+    void receive(Thing thing){
+        things.add(thing);
+        thing.onPickedUp();
         remainingNumberOfThings--;
         findNewDestination();
     }
 
-    private void findNewDestination(){
-        currentDestination = labyrinth.getNearestThingTo(currentCell);
-        moveController.refresh(currentDestination);
+    void arriveAt(LabyrinthCell cell){
+        currentCell = cell;
     }
 }

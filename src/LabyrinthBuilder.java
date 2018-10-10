@@ -5,6 +5,7 @@ class LabyrinthBuilder {
 
     private List<List<LabyrinthCell>> labyrinthCells;
     private List<List<Cell>> cells;
+    private List<Thing> things = new ArrayList<>();
     private int rowCount;
     private int columnCount;
 
@@ -16,7 +17,7 @@ class LabyrinthBuilder {
         createLabyrinthCells();
         initializeLabyrinthCells();
 
-        return new Labyrinth(labyrinthCells);
+        return new Labyrinth(labyrinthCells, things);
     }
     
     private void createLabyrinthCells(){
@@ -42,7 +43,9 @@ class LabyrinthBuilder {
         Cell cell = cells.get(row).get(column);
 
         if(cell.hasThing){
-            labyrinthCell.setThing(new Thing());
+            Thing newThing = new Thing(labyrinthCell);
+            things.add(newThing);
+            labyrinthCell.setThing(newThing);
         }
 
         if(!cell.hasNorthWall && row > 0){

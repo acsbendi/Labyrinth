@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 class InputParser {
 
-    private List<List<Cell>> cells;
+    private List<List<Cell>> cells = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
     private int numberOfThings;
 

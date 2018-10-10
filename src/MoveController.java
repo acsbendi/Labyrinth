@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 class MoveController {
@@ -11,12 +12,19 @@ class MoveController {
     }
 
     LabyrinthCell getNextMove(DistanceComparator distanceComparator){
-        List<Node> children = currentNode.generateChildren();
+        Collection<LabyrinthCell> children = currentNode.generateUnvisitedChildren();
+        rootNode.removeContained(children);
 
+        if(children.size() > 0){
+            List<LabyrinthCell> childrenList = new ArrayList<>(children);
+            childrenList.sort(distanceComparator);
+            LabyrinthCell nextCell = childrenList.get(0);
+            currentNode = new Node(nextCell, currentNode);
+            return nextCell;
+        }
 
-        List<LabyrinthCell> leaves = new ArrayList<>();
-        rootNode.insertLeavesInto(leaves);
-        leaves.sort(distanceComparator);
+        currentNode = currentNode.getParent();
+        return currentNode.getCell();
     }
 
     void refresh(LabyrinthCell newRoot){

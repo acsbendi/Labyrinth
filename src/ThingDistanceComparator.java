@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class ThingDistanceComparator implements Comparator<LabyrinthCell> {
+public class ThingDistanceComparator implements Comparator<Thing> {
 
     private Labyrinth labyrinth;
     private LabyrinthCell base;
@@ -11,15 +11,11 @@ public class ThingDistanceComparator implements Comparator<LabyrinthCell> {
     }
 
     @Override
-    public int compare(LabyrinthCell o1, LabyrinthCell o2) {
-        int distanceFromBase1 = Integer.MAX_VALUE;
-        int distanceFromBase2 = Integer.MAX_VALUE;
-        if(o1.hasThing())
-             distanceFromBase1 = labyrinth.getDistanceBetween(base, o1);
-        if(o2.hasThing())
-            distanceFromBase2 = labyrinth.getDistanceBetween(base, o2);
+    public int compare(Thing o1, Thing o2) {
+        int distance1 = o1.getDistanceFrom(base, labyrinth);
+        int distance2 = o2.getDistanceFrom(base, labyrinth);
 
-        return distanceFromBase1 - distanceFromBase2;
+        return distance1 - distance2;
     }
 
     @Override

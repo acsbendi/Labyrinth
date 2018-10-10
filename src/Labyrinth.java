@@ -1,17 +1,18 @@
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
 class Labyrinth {
 
     private List<List<LabyrinthCell>> cells;
+    private List<Thing> things;
     private int rowCount;
     private int columnCount;
 
-    Labyrinth(List<List<LabyrinthCell>> cells){
+    Labyrinth(List<List<LabyrinthCell>> cells, List<Thing> things){
         this.cells = cells;
         this.rowCount = cells.size();
         this.columnCount = cells.get(0).size();
+        this.things = things;
     }
 
     Agent createNewAgent(int numberOfThings){
@@ -22,13 +23,12 @@ class Labyrinth {
         return cells.get(rowCount - 1).get(columnCount - 1) == cell;
     }
 
-    LabyrinthCell getNearestThingTo(LabyrinthCell base) {
-        List<LabyrinthCell> sortedCells = cells.stream()
-                .flatMap(Collection::stream)
+    Thing getNearestThingTo(LabyrinthCell base) {
+        List<Thing> sortedThings = things.stream()
                 .sorted(new ThingDistanceComparator(this, base))
                 .collect(Collectors.toList());
 
-        return sortedCells.get(0);
+        return sortedThings.get(0);
     }
 
     int getDistanceBetween(LabyrinthCell cell1, LabyrinthCell cell2){
