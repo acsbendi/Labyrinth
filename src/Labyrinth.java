@@ -20,7 +20,7 @@ class Labyrinth {
     }
 
     boolean isExit(LabyrinthCell cell){
-        return cells.get(rowCount - 1).get(columnCount - 1) == cell;
+        return getExit() == cell;
     }
 
     Thing getNearestThingTo(LabyrinthCell base) {
@@ -44,5 +44,9 @@ class Labyrinth {
                 if(cells.get(i).get(j) == cell)
                     return new Coordinate(j, i);
         throw new RuntimeException("No such cell exists in labyrinth");
+    }
+
+    LabyrinthCell getExit(){
+        return cells.get(rowCount - 1).get(columnCount - 1);
     }
 }

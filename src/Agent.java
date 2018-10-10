@@ -30,6 +30,7 @@ class Agent {
     }
 
     private void escape(){
+        currentDestination = labyrinth.getExit();
         while (!labyrinth.isExit(currentCell)){
             move();
         }
