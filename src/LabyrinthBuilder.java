@@ -25,7 +25,7 @@ class LabyrinthBuilder {
         for (int i = 0; i < rowCount; ++i){
             labyrinthCells.add(new ArrayList<>());
             for(int j = 0; j < columnCount; ++j){
-                labyrinthCells.get(i).add(new LabyrinthCell());
+                labyrinthCells.get(i).add(new LabyrinthCell(new Coordinate(j,i)));
             }
         }
     }

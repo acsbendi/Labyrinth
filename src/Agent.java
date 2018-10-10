@@ -48,6 +48,7 @@ class Agent {
     void receive(Thing thing){
         things.add(thing);
         thing.onPickedUp();
+        System.out.println("felvesz");
         remainingNumberOfThings--;
         findNewDestination();
     }
