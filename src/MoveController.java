@@ -29,5 +29,6 @@ class MoveController {
 
     void refresh(LabyrinthCell newRoot){
         rootNode = new Node(newRoot, null);
+        currentNode = rootNode;
     }
 }

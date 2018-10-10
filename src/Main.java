@@ -7,5 +7,6 @@ public class Main {
         Labyrinth labyrinth = labyrinthBuilder.buildLabyrinth(inputParser.getCells());
         Agent agent = labyrinth.createNewAgent(inputParser.getNumberOfThings());
         agent.solve();
+        System.out.println();
     }
 }

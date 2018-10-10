@@ -16,7 +16,8 @@ class Node {
     }
 
     private void addChild(Node newChild){
-        children.add(newChild);
+        if(!children.contains(newChild))
+            children.add(newChild);
     }
 
     void removeContained(Collection<LabyrinthCell> cells){
