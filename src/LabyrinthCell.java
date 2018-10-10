@@ -1,5 +1,7 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
+import java.util.List;
 
 class LabyrinthCell {
 
@@ -21,14 +23,14 @@ class LabyrinthCell {
 
     void accept(Agent agent){
         System.out.println(location.yCoordinate + " " + location.xCoordinate);
+        agent.arriveAt(this);
         if(thing != null){
             agent.receive(thing);
             thing = null;
         }
-        agent.arriveAt(this);
     }
 
-    Collection<LabyrinthCell> getNeighbors(){
-        return neighbors.values();
+    List<LabyrinthCell> getNeighbors(){
+        return new ArrayList<>(neighbors.values());
     }
 }

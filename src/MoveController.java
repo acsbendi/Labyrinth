@@ -12,7 +12,7 @@ class MoveController {
     }
 
     LabyrinthCell getNextMove(DistanceComparator distanceComparator){
-        Collection<LabyrinthCell> children = currentNode.generateUnvisitedChildren();
+        List<LabyrinthCell> children = currentNode.generateUnvisitedChildren();
         rootNode.removeContained(children);
 
         if(children.size() > 0){

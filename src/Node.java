@@ -28,8 +28,8 @@ class Node {
         }
     }
 
-    Collection<LabyrinthCell> generateUnvisitedChildren(){
-        Collection<LabyrinthCell> possibleChildren = cell.getNeighbors();
+    List<LabyrinthCell> generateUnvisitedChildren(){
+        List<LabyrinthCell> possibleChildren = cell.getNeighbors();
         removeContained(possibleChildren);
         return possibleChildren;
     }
