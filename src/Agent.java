@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.List;
 
 class Agent {
 
-    private List<Thing> things;
+    private List<Thing> things = new ArrayList<>();
     private LabyrinthCell currentCell;
     private int remainingNumberOfThings;
     private Labyrinth labyrinth;
@@ -17,6 +18,7 @@ class Agent {
     }
 
     void solve(){
+        findNewDestination();
         collectAllThings();
         escape();
     }
@@ -28,7 +30,7 @@ class Agent {
     }
 
     private void escape(){
-        while (labyrinth.isExit(currentCell)){
+        while (!labyrinth.isExit(currentCell)){
             move();
         }
     }

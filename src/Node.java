@@ -11,7 +11,8 @@ class Node {
         this.cell = cell;
         this.parent = parent;
         this.children = new ArrayList<>();
-        parent.addChild(this);
+        if(parent != null)
+            parent.addChild(this);
     }
 
     private void addChild(Node newChild){

@@ -20,11 +20,11 @@ class LabyrinthCell {
     }
 
     void accept(Agent agent){
+        System.out.println(location.yCoordinate + " " + location.xCoordinate);
         if(thing != null){
             agent.receive(thing);
             thing = null;
         }
-        System.out.println(location.xCoordinate + " " + location.yCoordinate);
         agent.arriveAt(this);
     }
 

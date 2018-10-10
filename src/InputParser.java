@@ -13,6 +13,7 @@ class InputParser {
         while(scanner.hasNext()){
             readLine();
         }
+        scanner.close();
     }
 
     private void readLine(){
